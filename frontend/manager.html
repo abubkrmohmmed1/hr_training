@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة المدير المباشر</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo">ن</div><div class="brand-text">نظام التدريب الذكي</div></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer"><button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">تقييم الفريق</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div><div class="text-title" id="user-name">—</div><small class="text-muted" id="user-role"></small></div>
+            <div class="avatar" id="user-avatar">خ</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content" id="manager-body">
+        <section class="card mb-xl" id="team-overview">
+          <div class="card-header"><h3>متابعة تقدم الفريق</h3></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الموظف</th><th>آخر تقييم</th><th>تقدم الخطة</th><th>أثر التدريب</th></tr></thead>
+              <tbody id="team-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl" id="team">
+          <div class="card-header"><h3>اختر موظفاً من فريقك</h3></div>
+          <div class="card-body">
+            <label class="form-label" for="team-search">بحث في الفريق</label>
+            <input class="form-input mb-lg" id="team-search" placeholder="اسم أو مسمى وظيفي">
+            <label class="form-label" for="team-select">عضو الفريق</label>
+            <select class="form-select" id="team-select"></select>
+            <div class="mt-lg" id="member-card"></div>
+          </div>
+        </section>
+        <section class="grid-2" id="assess">
+          <article class="card">
+            <div class="card-header"><h3>فجوات المهارات</h3></div>
+            <div class="card-body" id="gap-list"></div>
+          </article>
+          <article class="card">
+            <div class="card-header"><h3>نموذج تقييم المدير</h3></div>
+            <div class="card-body">
+              <div id="assess-form" class="skills-grid"></div>
+              <button class="btn btn-primary mt-lg" id="submit-assess">حفظ التقييم</button>
+            </div>
+          </article>
+        </section>
+        <section class="card mb-xl" id="team-plans-approval">
+          <div class="card-header"><h3>خطط تدريب الفريق (بانتظار موافقتك)</h3></div>
+          <div class="card-body" id="manager-plans-box"></div>
+        </section>
+        <section class="card mb-xl" id="team-skill-upgrades">
+          <div class="card-header"><h3>اعتماد ترقيات المهارات بعد إكمال الدورات</h3></div>
+          <div class="card-body" id="manager-upgrades-box"></div>
+        </section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>تقرير أداء الفريق</h3><div class="table-actions"><button class="btn btn-secondary btn-sm" id="export-csv" type="button">تصدير CSV</button><button class="btn btn-primary btn-sm" id="export-pdf" type="button">طباعة / PDF</button></div></div>
+          <div class="card-body" id="manager-report-overview"></div>
+        </section>
+        <section class="card mb-xl" id="comparison">
+          <div class="card-header"><h3>مقارنة التقييم الذاتي وتقييم المدير</h3></div>
+          <div class="card-body" id="compare-box"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initManagerPage } from '/js/pages/manager.js';
+    initManagerPage();
+  </script>
+</body>
+</html>

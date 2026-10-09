@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>خطتي التدريبية</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo">ن</div><div class="brand-text">نظام التدريب الذكي</div></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer"><button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">خطتي التدريبية</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div><div class="text-title" id="user-name">—</div><small class="text-muted" id="user-role"></small></div>
+            <div class="avatar" id="user-avatar">أ</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="ai-banner" id="impact-banner"></section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>الدورات حسب الأثر المتوقع</h3></div>
+          <div class="card-body"><div class="impact-grid" id="impact-courses"></div></div>
+        </section>
+        <div id="plans-wrap"></div>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initEmployeePlanPage } from '/js/pages/employee-plan.js';
+    initEmployeePlanPage();
+  </script>
+</body>
+</html>

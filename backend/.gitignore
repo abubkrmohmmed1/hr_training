@@ -1,0 +1,4 @@
+__pycache__/
+*.pyc
+database.db
+ml_impact_model.pkl

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة الموارد البشرية</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo">ن</div><div class="brand-text">نظام التدريب الذكي</div></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer"><button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">لوحة الموارد البشرية</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div><div class="text-title" id="user-name">—</div><small class="text-muted" id="user-role"></small></div>
+            <div class="avatar" id="user-avatar">ف</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="kpi-grid">
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-employees">0</div><div class="kpi-label">إجمالي الموظفين</div></div><div class="kpi-icon blue">م</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-pending">0</div><div class="kpi-label">بانتظار التقييم</div></div><div class="kpi-icon orange">ت</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-training">0</div><div class="kpi-label">في التدريب</div></div><div class="kpi-icon green">د</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-plans">0</div><div class="kpi-label">خطط تنتظر الاعتماد</div></div><div class="kpi-icon purple">خ</div></article>
+        </section>
+        <section class="grid-2">
+          <article class="card">
+            <div class="card-header"><h3>توصيات النموذج</h3></div>
+            <div class="card-body" id="ai-recs"></div>
+          </article>
+          <article class="card" id="reports">
+            <div class="card-header"><h3>احتياجات التدريب</h3></div>
+            <div class="card-body"><div class="chart-container"><canvas id="needsChart"></canvas></div></div>
+          </article>
+        </section>
+        <section class="card mb-xl" id="decision">
+          <div class="card-header">
+            <h3>دعم القرار</h3>
+            <button class="btn btn-secondary btn-sm" id="export-csv" type="button">تصدير التقدم CSV</button>
+            <button class="btn btn-primary btn-sm" id="export-pdf" type="button">تصدير PDF</button>
+          </div>
+          <div class="card-body" id="decision-box"></div>
+        </section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>أثر التدريب على المهارات</h3></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الموظف</th><th>القسم</th><th>دورات مكتملة</th><th>الأثر الفعلي</th><th>الأثر المتوقع</th></tr></thead>
+              <tbody id="impact-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>تقدم الخطط التدريبية</h3></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الموظف</th><th>الحالة</th><th>المكتمل</th><th>التقدم</th></tr></thead>
+              <tbody id="progress-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>موظفون بحاجة للمتابعة</h3></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الموظف</th><th>النتيجة</th><th>المخاطر</th><th>التدريب</th></tr></thead>
+              <tbody id="perf-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card" id="employees">
+          <div class="card-header">
+            <h3>الموظفون</h3>
+            <div class="table-actions">
+              <button class="btn btn-secondary btn-sm" id="add-dept-btn" type="button">إضافة قسم</button>
+              <button class="btn btn-primary btn-sm" id="add-employee-btn" type="button">إضافة موظف</button>
+            </div>
+          </div>
+          <div class="filter-row">
+            <input class="form-input" id="emp-search" placeholder="بحث بالاسم أو المسمى">
+            <select class="form-select" id="emp-dept">
+              <option value="">كل الأقسام</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الاسم</th><th>المسمى</th><th>القسم</th><th>إجراء</th></tr></thead>
+              <tbody id="employees-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl">
+          <div class="card-header"><h3>ملخص تقارير الموارد البشرية</h3></div>
+          <div class="card-body" id="role-report-overview"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initHrPage } from '/js/pages/hr.js';
+    initHrPage();
+  </script>
+</body>
+</html>

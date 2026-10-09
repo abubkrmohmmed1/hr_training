@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>كتالوج الدورات</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo">ن</div><div class="brand-text">نظام التدريب الذكي</div></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer"><button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">كتالوج الدورات</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div><div class="text-title" id="user-name">—</div><small class="text-muted" id="user-role"></small></div>
+            <div class="avatar" id="user-avatar">أ</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <h3>استكشف الدورات التدريبية</h3>
+              <p class="text-body-sm text-muted mt-sm"><span id="course-count">0</span> دورة متاحة</p>
+            </div>
+            <button class="btn btn-secondary btn-sm" id="show-favorites" type="button">عرض المفضلة</button>
+          </div>
+          <div class="filter-row">
+            <input class="form-input" id="course-search" type="search" placeholder="ابحث بعنوان الدورة أو المهارة أو الجهة">
+            <select class="form-select" id="course-skill" aria-label="تصفية حسب المهارة"><option value="">كل المهارات</option></select>
+            <select class="form-select" id="course-level" aria-label="تصفية حسب المستوى">
+              <option value="">كل المستويات</option>
+              <option value="1">المستوى 1</option><option value="2">المستوى 2</option><option value="3">المستوى 3</option>
+              <option value="4">المستوى 4</option><option value="5">المستوى 5</option>
+            </select>
+            <select class="form-select" id="course-type" aria-label="تصفية حسب النوع">
+              <option value="">كل الأنواع</option>
+              <option value="online">إلكترونية</option><option value="classroom">حضورية</option><option value="workshop">ورشة عمل</option>
+            </select>
+          </div>
+          <div class="card-body"><div class="impact-grid" id="course-grid"></div></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initEmployeeCoursesPage } from '/js/pages/employee-courses.js';
+    initEmployeeCoursesPage();
+  </script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الخطط التدريبية</title>
+  <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header"><div class="logo">ن</div><div class="brand-text">نظام التدريب الذكي</div></div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer"><button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button></div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">الخطط التدريبية</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div><div class="text-title" id="user-name">—</div><small class="text-muted" id="user-role"></small></div>
+            <div class="avatar" id="user-avatar">ف</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content">
+        <div class="card-header" style="padding:0 0 1rem;border:none;">
+          <h2 class="header-title">إدارة الخطط</h2>
+          <div class="table-actions">
+            <button class="btn btn-secondary btn-sm" id="add-course-btn" type="button">إضافة دورة</button>
+            <button class="btn btn-primary btn-sm" id="add-plan-btn" type="button">إنشاء خطة</button>
+          </div>
+        </div>
+        <div class="tabs">
+          <button class="tab-item active" data-status="draft" id="tab-draft">تنتظر الاعتماد</button>
+          <button class="tab-item" data-status="approved" id="tab-approved">معتمدة</button>
+          <button class="tab-item" data-status="active" id="tab-active">جارية</button>
+          <button class="tab-item" data-status="completed" id="tab-completed">مكتملة</button>
+          <button class="tab-item" data-status="rejected" id="tab-rejected">مرفوضة</button>
+        </div>
+        <div class="filter-row">
+          <input class="form-input" id="plan-search" placeholder="بحث بالاسم">
+          <select class="form-select" id="plan-dept">
+            <option value="">كل الأقسام</option>
+          </select>
+        </div>
+        <div id="plans-list"></div>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initHrPlansPage } from '/js/pages/hr-plans.js';
+    initHrPlansPage();
+  </script>
+</body>
+</html>

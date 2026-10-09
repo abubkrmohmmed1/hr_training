@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>لوحة مدير النظام</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">ن</div>
+        <div class="brand-text">نظام التدريب الذكي</div>
+      </div>
+      <nav class="sidebar-nav" id="sidebar-nav"></nav>
+      <div class="sidebar-footer">
+        <button class="btn btn-ghost logout-btn" id="logout-btn">تسجيل الخروج</button>
+      </div>
+    </aside>
+    <div class="main-content">
+      <header class="top-header">
+        <div class="header-right">
+          <button class="mobile-menu-btn" id="mobile-menu-btn" aria-label="القائمة">☰</button>
+          <h1 class="header-title">لوحة تحكم مدير النظام</h1>
+        </div>
+        <div class="header-left">
+          <div class="user-info">
+            <div>
+              <div class="text-title" id="user-name">—</div>
+              <small class="text-muted" id="user-role"></small>
+            </div>
+            <div class="avatar" id="user-avatar">أ</div>
+          </div>
+        </div>
+      </header>
+      <main class="page-content">
+        <section class="kpi-grid">
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-employees">0</div><div class="kpi-label">إجمالي الموظفين</div></div><div class="kpi-icon blue">م</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-departments">0</div><div class="kpi-label">الأقسام</div></div><div class="kpi-icon green">ق</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-courses">0</div><div class="kpi-label">الدورات المتاحة</div></div><div class="kpi-icon orange">د</div></article>
+          <article class="kpi-card"><div class="kpi-info"><div class="kpi-value" id="kpi-users">0</div><div class="kpi-label">مستخدمو النظام</div></div><div class="kpi-icon purple">ح</div></article>
+        </section>
+        <section class="grid-2">
+          <article class="card">
+            <div class="card-header"><h3>توزيع الموظفين</h3></div>
+            <div class="card-body"><div class="chart-container"><canvas id="deptChart"></canvas></div></div>
+          </article>
+          <article class="card" id="reports">
+            <div class="card-header"><h3>أحدث التقييمات</h3></div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead><tr><th>الموظف</th><th>النشاط</th><th>التاريخ</th><th>الحالة</th></tr></thead>
+                <tbody id="activity-table"></tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+        <section class="card mb-xl" id="users">
+          <div class="card-header">
+            <h3>المستخدمون</h3>
+            <button class="btn btn-primary btn-sm" id="add-employee-btn" type="button">إضافة موظف</button>
+          </div>
+          <div class="filter-row">
+            <input class="form-input" id="user-search" placeholder="بحث بالاسم أو البريد">
+            <select class="form-select" id="user-role-filter">
+              <option value="">كل الأدوار</option>
+              <option value="admin">مدير النظام</option>
+              <option value="hr">الموارد البشرية</option>
+              <option value="manager">المدير المباشر</option>
+              <option value="employee">موظف</option>
+            </select>
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>الاسم</th><th>البريد</th><th>الدور</th><th>الحالة</th></tr></thead>
+              <tbody id="users-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl" id="audit">
+          <div class="card-header"><h3>سجل النشاط</h3></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>المستخدم</th><th>الإجراء</th><th>التفاصيل</th><th>التاريخ</th></tr></thead>
+              <tbody id="audit-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card" id="courses">
+          <div class="card-header">
+            <h3>الدورات</h3>
+            <div class="table-actions">
+              <button class="btn btn-secondary btn-sm" id="add-skill-btn" type="button">إضافة مهارة</button>
+              <button class="btn btn-secondary btn-sm" id="add-dept-btn" type="button">إضافة قسم</button>
+              <button class="btn btn-primary btn-sm" id="add-course-btn" type="button">إضافة دورة</button>
+            </div>
+          </div>
+          <div class="filter-row">
+            <input class="form-input" id="course-search" placeholder="بحث بعنوان الدورة أو المهارة">
+          </div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead><tr><th>العنوان</th><th>المهارة</th><th>المستوى</th><th>المدة</th><th>الجهة</th><th>إجراء</th></tr></thead>
+              <tbody id="courses-table"></tbody>
+            </table>
+          </div>
+        </section>
+        <section class="card mb-xl" id="analytics">
+          <div class="card-header"><h3>ملخص التقارير التنفيذية</h3><div class="table-actions"><button class="btn btn-secondary btn-sm" id="export-csv" type="button">CSV</button><button class="btn btn-primary btn-sm" id="export-pdf" type="button">PDF</button></div></div>
+          <div class="card-body" id="admin-report-overview"></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script type="module">
+    import { initAdminPage } from '/js/pages/admin.js';
+    initAdminPage();
+  </script>
+</body>
+</html>

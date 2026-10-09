@@ -1,0 +1,11 @@
+__pycache__
+*.pyc
+*.pyo
+*.pyd
+.env
+database.db
+*.joblib
+*.sig
+.git
+.vscode
+.pytest_cache

@@ -1,0 +1,57 @@
+# Python artifacts
+backend/.venv/
+backend/__pycache__/
+backend/*.py[cod]
+docs/__pycache__/
+**/__pycache__/
+**/*.py[cod]
+**/.pytest_cache/
+**/.mypy_cache/
+**/.ruff_cache/
+
+# Runtime-generated local data
+backend/database.db
+backend/ml_impact_model.pkl
+backend/ml_impact_model.joblib
+backend/ml_impact_model.joblib.sig
+backend/.env
+.env
+.env.*
+!.env.example
+database.db
+*.db-shm
+*.db-wal
+
+# Local machine, cache, and generated artifacts
+Microsoft/
+screens/
+*.log
+
+# Local documentation, analysis, and generated guides (not published with code)
+analysis/
+docs/
+README.md
+USER_GUIDE.md
+USER_GUIDE.docx
+TECHNICAL_GUIDE.md
+TECHNICAL_GUIDE.docx
+project_roadmap.md
+*.pdf
+*.docx
+
+# One-off helper scripts
+write_app.py
+docs/generate_guides.py
+backend/seed.py
+
+# Local agent/editor instructions
+.codex/
+.agents/
+
+# Editor and operating-system files
+.vscode/
+.idea/
+*.iml
+~$*.docx
+Thumbs.db
+Desktop.ini
